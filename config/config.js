@@ -1,10 +1,11 @@
-{
+require("dotenv").config();
+
+console.log("WHAT IS ENV", process.env);
+
+module.exports = {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+"url":`${process.env.DATABASE_URL_DEVELOPMENT}`,
+    "dialect": "postgress"
   },
   "test": {
     "username": "root",
