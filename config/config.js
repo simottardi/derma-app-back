@@ -4,7 +4,7 @@ console.log("WHAT IS ENV", process.env);
 
 module.exports = {
   "development": {
-"url":`${DATABASE_URL_DEVELOPMENT}`,
+"url":`${process.env.DATABASE_URL_DEVELOPMENT}`,
     "dialect": "postgress"
   },
   "test": {
