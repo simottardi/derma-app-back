@@ -33,11 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       doctorId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       address: {
         type: DataTypes.STRING,        
-        allowNull: false,
+        allowNull: true,
       },
   }, {
     sequelize,

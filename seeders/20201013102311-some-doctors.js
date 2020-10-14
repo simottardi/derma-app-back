@@ -1,4 +1,6 @@
 'use strict';
+const bcrypt = require("bcrypt");
+const { SALT_ROUNDS } = require("../config/constants");
 
 const doctor = require("../models/doctor");
 
@@ -8,7 +10,7 @@ await queryInterface.bulkInsert("doctors", [
       {
       name: "Albert Alberti",
       email: "alberti@doctor.com", 
-      password: "IAmDoctor",
+      password: bcrypt.hashSync("IAmDoctor", SALT_ROUNDS),
       isDoctor: true,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -16,7 +18,7 @@ await queryInterface.bulkInsert("doctors", [
       {
         name: "Andrea Andrei",
         email: "andrei@doctor.com", 
-        password: "IAmDoctor",
+        password: bcrypt.hashSync("IAmDoctor", SALT_ROUNDS),
         isDoctor: true,
         createdAt: new Date(),
         updatedAt: new Date(),
