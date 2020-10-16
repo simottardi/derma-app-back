@@ -8,6 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      date: {
+        type: Sequelize.DATEONLY,
+        allowNull: false,
+      },
       itchScore: {
         type: Sequelize.INTEGER
       },
