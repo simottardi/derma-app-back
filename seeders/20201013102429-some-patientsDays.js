@@ -4,6 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
      await queryInterface.bulkInsert("patientDays",[
 {
+  date: "2020-10-15",
   itchScore: 1,
   note: "feeling good, itch is almost absent",
   image: "url-1",
@@ -15,6 +16,7 @@ module.exports = {
   updatedAt: new Date(),
 },
 {
+    date: "2020-10-14",
   itchScore: 2,
   note: "feeling ok, itch is almost gone",
   image: "url-2",
@@ -26,6 +28,7 @@ module.exports = {
   updatedAt: new Date(),
 },
 {
+      date: "2020-10-13",
   itchScore: 3,
   note: "feeling so and so, I feel itchy",
   image: "url-2",
@@ -37,6 +40,7 @@ module.exports = {
   updatedAt: new Date(),
 },
 {
+      date: "2020-10-15",
   itchScore: 2,
   note: "feeling better, itch is almost gone",
   image: "url-11",

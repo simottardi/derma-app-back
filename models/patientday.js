@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   patientDay.init({
+          date: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
 itchScore: {
         type: DataTypes.INTEGER
       },
