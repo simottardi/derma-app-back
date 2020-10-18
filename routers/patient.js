@@ -115,19 +115,20 @@ router.get("/:id/prescription", async (req, res, next) => {
 //fetch patient's history [array of days] // add pagination later
 router.get("/:id/history", async (req, res, next) => {
     try {
-  const { id } = req.params;
+  const  id  = req.params.id;
 
   console.log(id);
   if (isNaN(parseInt(id))) {
     return res.status(400).send({ message: "Patient id is not a number" });
   }
-const limit = req.query.limit || 10;
+   const limit = req.query.limit || 10;
    const offset = req.query.offset || 0;
-   const patientArrayDays  = await Patient.findByPk(id, {
-    limit,
-    offset,    
-     include: [Patientday],
-    //  order: [[Patientday, "createdAt", "DESC"]]
+       const patientArrayDays  = await Patientday.findAll({ 
+        where: { patientId: id},
+        order: [["date", "DESC"]],
+        offset, 
+        limit,
+    
   });
 
   if (patientArrayDays === null) {
