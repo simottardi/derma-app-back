@@ -220,7 +220,7 @@ router.post("/:id/daybydate", async (req, res, next) => {
 
 
 //PATCHING
-//Patching a patient day
+//Later change the route to -->  patients/:patientid/patientdays/:dayid"
 router.patch("/:id/daybydate", async (req, res, next) => {
     try {
       const date = req.body.date;
@@ -238,28 +238,31 @@ router.patch("/:id/daybydate", async (req, res, next) => {
   //     .status(403)
   //     .send({ message: "You are not authorized to update this homepage" });
   // }
+console.log("REQBODY",req.body)
+   const { data }= req.body;
 
-   const { 
-       itchScore,
-       medicationAfternoon,
-       medicationEvening,
-       medicationMorning,
-       note,
-       image } = req.body;
+  //  { 
+  //      itchScore,
+  //      medicationAfternoon,
+  //      medicationEvening,
+  //      medicationMorning,
+  //      note,
+  //      image }
 
   if (!date) {
     return res.status(400).send({ message: "A day must have a date and must be created before it is updated date" });
   }
 
   await updateDay.update({
+    ...data
      //  date,
-       itchScore,
-       medicationAfternoon,
-       medicationEvening,
-       medicationMorning,
-       note,
-     //  patientId: id,
-       image 
+    //    itchScore,
+    //    medicationAfternoon,
+    //    medicationEvening,
+    //    medicationMorning,
+    //    note,
+    //  //  patientId: id,
+    //    image 
   });
 
   res.status(201).send({ message: "Day updated", updateDay });
