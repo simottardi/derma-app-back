@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
 itchScore: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: 0
       },
       note: {
         type: DataTypes.STRING
@@ -29,19 +30,21 @@ itchScore: {
         type: DataTypes.STRING
       },
       medicationMorning: {
-        type: DataTypes.BOOLEAN
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
       },
       medicationAfternoon: {
-        type: DataTypes.BOOLEAN
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
       },
       medicationEvening: {
-        type: DataTypes.BOOLEAN
-      },
+        type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
 
        patientId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-
 
       }
   }, {

@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-console.log("WHAT IS ENV", process.env.PORT);
+// console.log("WHAT IS ENV", process.env.PORT);
 
 module.exports = {
   "development": {

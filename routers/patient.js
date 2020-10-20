@@ -144,12 +144,12 @@ router.get("/:id/history", async (req, res, next) => {
 
 
 // fetch patient's day by date
-router.get("/:id/daybydate", async (req, res, next) => {
+router.get("/:id/daybydate/:date", async (req, res, next) => {
     try {
-      const date = req.body.date;
+      const date = req.params.date;
       const  id  = req.params.id;
 
-    console.log("id", id, "date", date);
+    console.log("id", id, "date", date , "req.body", req.body);
   if (isNaN(parseInt(id))) {
     return res.status(400).send({ message: "Patient id is not a number" });
   }
