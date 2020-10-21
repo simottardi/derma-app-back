@@ -4,6 +4,7 @@ const Doctor = require("../models").doctor;
 const Prescription = require("../models").prescription;
 const Patientday = require("../models").patientDay;
 const router = new Router();
+const { authPatient } = require("../auth/middleware");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -113,18 +114,22 @@ router.get("/:id/prescription", async (req, res, next) => {
 
 
 //fetch patient's history [array of days] // add pagination later
-router.get("/:id/history", async (req, res, next) => {
+router.get("/:id/history", authPatient, async (req, res, next) => {
     try {
-  const { id } = req.params;
+  const  id  = req.params.id;
 
   console.log(id);
   if (isNaN(parseInt(id))) {
     return res.status(400).send({ message: "Patient id is not a number" });
   }
-
-  const patientArrayDays  = await Patient.findByPk(id, {
-     include: [Patientday],
-    //  order: [[Patientday, "createdAt", "DESC"]]
+   const limit = req.query.limit || 10;
+   const offset = req.query.offset || 0;
+       const patientArrayDays  = await Patientday.findAll({ 
+        where: { patientId: id},
+        order: [["date", "DESC"]],
+        offset, 
+        limit,
+    
   });
 
   if (patientArrayDays === null) {
@@ -140,12 +145,12 @@ router.get("/:id/history", async (req, res, next) => {
 
 
 // fetch patient's day by date
-router.get("/:id/daybydate", async (req, res, next) => {
+router.get("/:id/daybydate/:date", /* authPatient, */  async (req, res, next) => {
     try {
-      const date = req.body.date;
+      const date = req.params.date;
       const  id  = req.params.id;
 
-    console.log("id", id, "date", date);
+    console.log("id", id, "date", date , "req.body", req.body);
   if (isNaN(parseInt(id))) {
     return res.status(400).send({ message: "Patient id is not a number" });
   }
@@ -168,13 +173,13 @@ router.get("/:id/daybydate", async (req, res, next) => {
 
 //POSTING
 //createa patient's day
-router.post("/:id/daybydate", async (req, res, next) => {
+router.post("/:id/daybydate", /* authPatient, */ async (req, res, next) => {
     try {
       const date = req.body.date;
       const  id  = req.params.id;
 
       const day = await Patientday.findOne({
-    where: { date: date ,
+      where: { date: date ,
       patientId: id}
   });
   console.log("my day", day);
@@ -183,29 +188,15 @@ router.post("/:id/daybydate", async (req, res, next) => {
     return res.status(404).send({ message: "This day already exist" });
   }
 
-   const { 
-
-       itchScore,
-       medicationAfternoon,
-       medicationEvening,
-       medicationMorning,
-       note,
-
-       image } = req.body;
-
+console.log("REQBODY",req.body)
+   const { data }= req.body;
+console.log("data", data) 
   if (!date) {
     return res.status(400).send({ message: "A day must have a date" });
   }
 
   const newDay = await Patientday.create({
-       date,
-       itchScore,
-       medicationAfternoon,
-       medicationEvening,
-       medicationMorning,
-       note,
-       patientId: id,
-       image 
+  ...data
   });
 
   res.status(201).send({ message: "Day created", newDay });
@@ -216,8 +207,8 @@ router.post("/:id/daybydate", async (req, res, next) => {
 
 
 //PATCHING
-//Patching a patient day
-router.patch("/:id/daybydate", async (req, res, next) => {
+//Later change the route to -->  patients/:patientid/patientdays/:dayid"
+router.patch("/:id/daybydate", /* authPatient,  */ async (req, res, next) => {
     try {
       const date = req.body.date;
       const  id  = req.params.id;
@@ -228,34 +219,15 @@ router.patch("/:id/daybydate", async (req, res, next) => {
   });
   console.log("my day", updateDay);
 
-  // to check later, when I add authentication
-  // if (patientDay.userId !== req.patient.id) {
-  //   return res
-  //     .status(403)
-  //     .send({ message: "You are not authorized to update this homepage" });
-  // }
-
-   const { 
-       itchScore,
-       medicationAfternoon,
-       medicationEvening,
-       medicationMorning,
-       note,
-       image } = req.body;
+console.log("REQBODY",req.body)
+   const { data }= req.body;
 
   if (!date) {
     return res.status(400).send({ message: "A day must have a date and must be created before it is updated date" });
   }
 
   await updateDay.update({
-     //  date,
-       itchScore,
-       medicationAfternoon,
-       medicationEvening,
-       medicationMorning,
-       note,
-     //  patientId: id,
-       image 
+    ...data
   });
 
   res.status(201).send({ message: "Day updated", updateDay });
