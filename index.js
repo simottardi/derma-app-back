@@ -5,7 +5,7 @@ const { PORT } = require("./config/constants");
 const authRouter = require("./routers/auth.js");
 const authMiddleWare = require("./auth/middleware");
 const patientRouter = require("./routers/patients.js");
-const doctorRouter = require("./routers/doctor.js");
+const doctorRouter = require("./routers/doctors.js");
 
 const app = express();
 
@@ -24,7 +24,7 @@ if (process.env.DELAY) {
 
 app.use("/", authRouter);
 app.use("/patients", patientRouter);
-app.use("/doctor", doctorRouter);
+app.use("/doctors", doctorRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
