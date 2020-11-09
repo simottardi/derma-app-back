@@ -16,22 +16,6 @@ router.get("/", authDoctor, async (req, res, next) => {
   }
 });
 
-// ROUTES TO IMPLEMENT
-/*
-[x] fetch patient's details
-[x]fetch patient's doctor 
-[x]fetch patient's prescription
-[x]fetch patient's history [array of days] // add pagination later
-[x]fetch patient's day by date
-
-[x]create a patient's day
-[x]set patients's itch score for the day
-[X]set patient's picture for the day --> to be done with cloudify
-[x]set patient's dayly medication as true or false
-
-[ ] adding auth to the routes that need it 
-*/
-
 // fetch patient details
 router.get("/:id", authPatient, async (req, res, next) => {
   try {

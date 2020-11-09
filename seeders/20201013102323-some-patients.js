@@ -1,37 +1,176 @@
-'use strict';
+"use strict";
 const bcrypt = require("bcrypt");
 const { SALT_ROUNDS } = require("../config/constants");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-await queryInterface.bulkInsert(
-      "patients",[
-        {
-          name: "testuser",
-          email: "test@test.com",
-          password:bcrypt.hashSync("test1234", SALT_ROUNDS),
-          doctorId: 1,
-          address: "test avenue",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          name: "dummy",
-          email: "a@a.com",
-          password:bcrypt.hashSync("a", SALT_ROUNDS),
-          doctorId: 2,
-          address: "dummy street",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
- 
-      ],
-      {}
-    );
+    await queryInterface.bulkInsert("patients", [
+      {
+        name: "testuser",
+        email: "test@test.com",
+        password: bcrypt.hashSync("test1234", SALT_ROUNDS),
+        doctorId: 2,
+        address: "test avenue",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy",
+        email: "a@a.com",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 1,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy2",
+        email: "2",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 2,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy3",
+        email: "3",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 2,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy4",
+        email: "4",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 2,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy5",
+        email: "5",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 2,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy6",
+        email: "6",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 2,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy7",
+        email: "7",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 2,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy8",
+        email: "8",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 2,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy9",
+        email: "9",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 2,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy10",
+        email: "10",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 2,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy11",
+        email: "11",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 1,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy12",
+        email: "12",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 1,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy13",
+        email: "13",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 1,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy14",
+        email: "14",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 1,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy15",
+        email: "15",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 1,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy16",
+        email: "16",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 1,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "dummy17",
+        email: "17",
+        password: bcrypt.hashSync("a", SALT_ROUNDS),
+        doctorId: 1,
+        address: "dummy street",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
   },
-      
 
   down: async (queryInterface, Sequelize) => {
-   await queryInterface.bulkDelete("patients", null, {});
+    await queryInterface.bulkDelete("patients", null, {});
   },
 };
